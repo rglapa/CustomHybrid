@@ -6,8 +6,14 @@
 //
 
 #import "ViewController.h"
+#import "../Renderer/AAPLRenderer.h"
 
 @implementation ViewController
+{
+    MTKView *_view;
+    
+    AAPLRenderer *_renderer;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

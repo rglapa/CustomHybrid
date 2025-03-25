@@ -10,8 +10,30 @@
 		45E36A852D93462F00A300A2 /* CustomHybrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomHybrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		45558C1B2D934CAC00586C8B /* Exceptions for "Renderer" folder in "CustomHybrid" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AAPLMathUtilities.m,
+				AAPLMesh.m,
+				AAPLModelInstance.m,
+				AAPLRenderer.m,
+				AAPLShaders.metal,
+			);
+			target = 45E36A842D93462F00A300A2 /* CustomHybrid */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		45E36A872D93462F00A300A2 /* CustomHybrid */ = {
+		45E36ACD2D93476E00A300A2 /* Renderer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				45558C1B2D934CAC00586C8B /* Exceptions for "Renderer" folder in "CustomHybrid" target */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		45E36AD72D93477D00A300A2 /* CustomHybrid */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CustomHybrid;
 			sourceTree = "<group>";
@@ -32,7 +54,8 @@
 		45E36A7C2D93462F00A300A2 = {
 			isa = PBXGroup;
 			children = (
-				45E36A872D93462F00A300A2 /* CustomHybrid */,
+				45E36ACD2D93476E00A300A2 /* Renderer */,
+				45E36AD72D93477D00A300A2 /* CustomHybrid */,
 				45E36A862D93462F00A300A2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +84,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				45E36A872D93462F00A300A2 /* CustomHybrid */,
+				45E36AD72D93477D00A300A2 /* CustomHybrid */,
 			);
 			name = CustomHybrid;
 			packageProductDependencies = (
