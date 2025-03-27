@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		45E36A852D93462F00A300A2 /* CustomHybrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomHybrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		45E36A852D93462F00A300A2 /* macOS-CustomHybrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macOS-CustomHybrid.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		45558C1B2D934CAC00586C8B /* Exceptions for "Renderer" folder in "CustomHybrid" target */ = {
+		45558C1B2D934CAC00586C8B /* Exceptions for "Renderer" folder in "macOS-CustomHybrid" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AAPLMathUtilities.m,
@@ -20,7 +20,7 @@
 				AAPLRenderer.m,
 				AAPLShaders.metal,
 			);
-			target = 45E36A842D93462F00A300A2 /* CustomHybrid */;
+			target = 45E36A842D93462F00A300A2 /* macOS-CustomHybrid */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -28,7 +28,7 @@
 		45E36ACD2D93476E00A300A2 /* Renderer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				45558C1B2D934CAC00586C8B /* Exceptions for "Renderer" folder in "CustomHybrid" target */,
+				45558C1B2D934CAC00586C8B /* Exceptions for "Renderer" folder in "macOS-CustomHybrid" target */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -63,7 +63,7 @@
 		45E36A862D93462F00A300A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				45E36A852D93462F00A300A2 /* CustomHybrid.app */,
+				45E36A852D93462F00A300A2 /* macOS-CustomHybrid.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,9 +71,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		45E36A842D93462F00A300A2 /* CustomHybrid */ = {
+		45E36A842D93462F00A300A2 /* macOS-CustomHybrid */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45E36A982D93463000A300A2 /* Build configuration list for PBXNativeTarget "CustomHybrid" */;
+			buildConfigurationList = 45E36A982D93463000A300A2 /* Build configuration list for PBXNativeTarget "macOS-CustomHybrid" */;
 			buildPhases = (
 				45E36A812D93462F00A300A2 /* Sources */,
 				45E36A822D93462F00A300A2 /* Frameworks */,
@@ -86,11 +86,11 @@
 			fileSystemSynchronizedGroups = (
 				45E36AD72D93477D00A300A2 /* CustomHybrid */,
 			);
-			name = CustomHybrid;
+			name = "macOS-CustomHybrid";
 			packageProductDependencies = (
 			);
 			productName = CustomHybrid;
-			productReference = 45E36A852D93462F00A300A2 /* CustomHybrid.app */;
+			productReference = 45E36A852D93462F00A300A2 /* macOS-CustomHybrid.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -121,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				45E36A842D93462F00A300A2 /* CustomHybrid */,
+				45E36A842D93462F00A300A2 /* macOS-CustomHybrid */,
 			);
 		};
 /* End PBXProject section */
@@ -155,6 +155,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -216,6 +217,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -326,7 +328,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45E36A982D93463000A300A2 /* Build configuration list for PBXNativeTarget "CustomHybrid" */ = {
+		45E36A982D93463000A300A2 /* Build configuration list for PBXNativeTarget "macOS-CustomHybrid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45E36A992D93463000A300A2 /* Debug */,

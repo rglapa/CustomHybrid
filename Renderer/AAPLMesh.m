@@ -8,7 +8,7 @@
 @import MetalKit;
 @import ModelIO;
 
-#import "AAPLmesh.h"
+#import "AAPLMesh.h"
 #import "AAPLMathUtilities.h"
 #import "AAPLArgumentBufferTypes.h"
 

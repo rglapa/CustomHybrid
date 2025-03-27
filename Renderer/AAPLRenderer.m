@@ -94,6 +94,102 @@ void arrayToBatchMethodHelper(NSArray *array, void (^callback)(__unsafe_unretain
     matrix_float4x4 _projectionMatrix;
     
     NSArray<AAPLMesh *>* _meshes;
+    AAPLMesh* _skybox;
+    id<MTLTexture> _skyMap;
+    
+    ModelInstance _modelInstances[kMaxModelInstances];
+    id<MTLEvent> _accelerationStructureBuildEvent;
+    id<MTLAccelerationStructure> _instanceAccelerationStructure;
+    
+    id<MTLTexture> _rtReflectionMap;
+    id<MTLFunction> _rtReflectionFunction;
+    id<MTLComputePipelineState> _rtReflectionPipeline;
+    id<MTLHeap> _rtMipmappingHeap;
+    id<MTLRenderPipelineState> _rtMipmapPipeline;
+    
+    /// Postprocessing pipelines.
+    id<MTLRenderPipelineState> _bloomThresholdPipeline;
+    id<MTLRenderPipelineState> _postMergePipeline;
+    id<MTLTexture> _rawColorMap;
+    id<MTLTexture> _bloomThresholdMap;
+    id<MTLTexture> _bloomBlurMap;
+    
+    ThinGBuffer _thinGBuffer;
+    
+    /// The argument buffer that contains the resources and constants required for rendering.
+    id<MTLBuffer> _sceneArgumentBuffer;
+    
+    NSMutableArray<id<MTLResource>>* _sceneResources;
+    NSMutableArray<id<MTLHeap>>* _sceneHeaps;
+    
+#if AAPL_SUPPORTS_RESIDENCY_SETS
+    NS_AVAILABLE(15, 18)
+    id<MTLResidencySet> _sceneResidencySet;
+    BOOL _useResidencySet;
+#endif
+    
+    float _cameraAngle;
+    float _cameraPanSpeedFactor;
+    float _metallicBias;
+    float _roughnessBias;
+    float _exposure;
+    RenderMode _renderMode;
+    
+}
+
+- (nonnull instancetype)initWithMetalKitView:(nonnull MTKView *)view size:(CGSize)size
+{
+    self = [super init];
+    if (self)
+    {
+        _device = view.device;
+        _inFlightSemaphore = dispatch_semaphore_create(kMaxBuffersInFlight);
+        _accelerationStructureBuildEvent = [_device newEvent];
+        configureModelInstances(_modelInstances, kMaxModelInstances);
+        _projectionMatrix = [self projectionMatrixWithAspect:size.width / size.height];
+        _sceneResources = [[NSMutableArray alloc] init];
+        _sceneHeaps = [[NSMutableArray alloc] init];
+        [self loadMetalWithView:view];
+        [self loadAssets];
+        
+        BOOL createdArgumentBuffers = NO;
+        
+        char* opts = getenv("DISABLE_METAL3_FEATURES");
+        if ((opts == NULL) || (strstr(opts, "1") != opts))
+        {
+            if (@available(macOS 13, iOS 16, *))
+            {
+                if ([_device supportsFamily:MTLGPUFamilyMetal3])
+                {
+                    createdArgumentBuffers = YES;
+                    [self buildSceneArgumentBufferMetal3];
+                }
+            }
+        }
+        
+        if (!createdArgumentBuffers)
+        {
+            [self buildSceneArgumentBufferFromReflectionFunction:_rtReflectionFunction];
+        }
+        
+        // Call this last to ensure everything else builds.
+        [self resizeRTReflectionMapTo:view.drawableSize];
+        [self buildRTAccelerationStructures];
+        
+#if AAPL_SUPPORTS_RESIDENCY_SETS
+        if ((opts == NULL) || (strstr(opts, "1") != opts))
+        {
+            if ( @available( macOS 15, iOS 18, *) )
+            {
+                if ( [_device supportsFamily:MTLGPUFamilyApple6] )
+                {
+                    [self buildSceneResidencySet];
+                    _useResidencySet = YES;
+                }
+            }
+        }
+#endif
+    }
 }
 
 @end
